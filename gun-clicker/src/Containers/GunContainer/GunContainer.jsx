@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Gun from '../../Assets/gun.svg'
+import Gun2 from '../../Assets/gun2.svg' 
 import cls from './GunContainer.module.css'
 import bullet from '../../Assets/bullet.svg'
 const GunContainer = () => {
@@ -16,12 +17,13 @@ const GunContainer = () => {
         }
     }
     const mainLogic = () =>{
-        if(points>19.9){
+        if(points>19.9 ){
             setBulletCost(0.93)
         }else{
             setBulletCost(0.83)
         }
     }
+    // https://www.svgrepo.com/svg/193146/revolver-pistol
     useEffect(()=>mainLogic,[points,bulletCost])
     return (
         <div className={cls.gun_container}>
@@ -30,7 +32,7 @@ const GunContainer = () => {
             <span className={cls.reload_cost} > Можно купить: {Math.round(points*bulletCost)}<img className={cls.info_bullet} src={bullet} alt="" /></span>
             </div>
             <span className={cls.points_count} >{points.toFixed(2)} $</span>
-            <img onClick={addPoints} className={cls.gun} src={Gun} alt="" />
+            <img onClick={addPoints} className={cls.gun} src={points>19.9 ? Gun2:Gun} alt="" />
             <ul>
                 <li><img className={bullets<6?cls.first_inactive:cls.first} src={bullet} alt="" /></li>
                 <li><img className={bullets<5?cls.second_inactive:cls.second} src={bullet} alt="" /></li>
