@@ -1,6 +1,6 @@
 .gun_container{
     display: flex;
-    flex-direction: column;
+    flex-direction: row-reverse;
     align-items: center;
     justify-content: center;
     height: 100vh;
@@ -44,7 +44,7 @@ li{
 }
 .bullet_cost{
     color: white;
-    font-size:18pt;
+    font-size:14pt;
     padding: 5px 60px;
     border: 2px solid rgb(132, 128, 142);
     border-radius: 12px;
@@ -55,7 +55,7 @@ li{
 }
 .reload_cost{
     color: white;
-    font-size:18pt;
+    font-size:14pt;
     padding: 5px 60px;
     border: 2px solid rgb(132, 128, 142);
     border-radius: 12px;
@@ -71,9 +71,13 @@ li{
 .info{
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    align-items: flex-start;
+    justify-content: flex-start;
+}
+.active_gun{
+    display: flex;
+    flex-direction: column;
 }
 .info_bullet{
-
+    width: 7%;
 }

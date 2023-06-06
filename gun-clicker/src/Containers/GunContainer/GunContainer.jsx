@@ -5,10 +5,12 @@ import cls from './GunContainer.module.css'
 import bullet from '../../Assets/bullet.svg'
 const GunContainer = () => {
     const [points, setPoints] = useState(0);
+    const [clicks, setClicks] = useState(0);
     const [bullets, setBullets]=useState(6);
     const [pointsAdd, setPoinsAdd]=useState(1);
-    const [bulletCost, setBulletCost]=useState(0.83)
+    const [bulletCost, setBulletCost]=useState(0.83);
     const addPoints = () =>{
+        setClicks(clicks+1)
         setPoints(points+pointsAdd)
         setBullets(bullets-1)
         if(bullets<=0){
@@ -17,7 +19,7 @@ const GunContainer = () => {
         }
     }
     const mainLogic = () =>{
-        if(points>19.9 ){
+        if(clicks>499 ){
             setBulletCost(0.93)
         }else{
             setBulletCost(0.83)
@@ -28,11 +30,13 @@ const GunContainer = () => {
     return (
         <div className={cls.gun_container}>
             <div className={cls.info}>
+                <span className={cls.bullet_cost} >Поступления с клика:{pointsAdd} $</span>
             <span className={cls.bullet_cost} >Стоимость пули: {bulletCost} $</span>
             <span className={cls.reload_cost} > Можно купить: {Math.round(points*bulletCost)}<img className={cls.info_bullet} src={bullet} alt="" /></span>
             </div>
+            <div className={cls.active_gun}>
             <span className={cls.points_count} >{points.toFixed(2)} $</span>
-            <img onClick={addPoints} className={cls.gun} src={points>19.9 ? Gun2:Gun} alt="" />
+            <img onClick={addPoints} className={cls.gun} src={clicks>499 ? Gun2:Gun} alt="" />
             <ul>
                 <li><img className={bullets<6?cls.first_inactive:cls.first} src={bullet} alt="" /></li>
                 <li><img className={bullets<5?cls.second_inactive:cls.second} src={bullet} alt="" /></li>
@@ -41,6 +45,7 @@ const GunContainer = () => {
                 <li><img className={bullets<2?cls.fifth_inactive:cls.fifth} src={bullet} alt="" /></li>
                 <li><img className={bullets<1?cls.sixth_inactive:cls.sixth} src={bullet} alt="" /></li>
             </ul>
+            </div>
         </div>
 
     );
